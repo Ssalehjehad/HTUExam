@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="custom.css">
+    <script type="text/javascript">
+     var xy = 0 ;
+     var xx = 0;
+     var ss=0;
+        var answersarray = [];
+        var timer;
+        localStorage.setItem("timmer", parseInt(20));
+        var k = localStorage.getItem("timmer");
+        function myTimer() {
+            k = localStorage.getItem("timmer");
+            $("#stopWatch").html(k);
+            k--;
+            localStorage.setItem("timmer", parseInt(k));
+            console.log(k);
+            if (k < 0) {
+                localStorage.setItem("timmer", parseInt(20));
+                $("#q").trigger("click");
+            }
+        }
+        localStorage.setItem("jOrder", parseInt(1));
+        $("document").ready(function () {
+            $("#q1,#q2,#q3,#q4,#q5,#q6,#q7,#q8,#q9,#q10").hide();
+            $("#q").click(function () {
+                var questionsOrder = $(this).attr("id");
+                var j = localStorage.getItem("jOrder");
+                i = j - 1;
+                var questionsArray = ["", 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
+                var name1 = $("#name").val();
+                console.log(questionsOrder);
+                $("#" + "q" + j).show();
+                $("#" + "q" + i).hide();
+                $("#" + "q" + i).prop("disabled", true);
+                var radioValue;
+                answersarray[0] = name1;
+                answersarray[1]=$("input[class='rad1']:checked").val();
+                answersarray[2]=$("input[class='rad2']:checked").val();
+                answersarray[3]=$("input[class='rad3']:checked").val();
+                answersarray[4]=$("input[class='rad4']:checked").val();
+                answersarray[5]=$("input[class='rad5']:checked").val();
+                answersarray[6]=$("input[class='rad6']:checked").val();
+                answersarray[7]=$("input[class='rad7']:checked").val();
+                answersarray[8]=$("input[class='rad8']:checked").val();
+                answersarray[9]=$("input[class='rad9']:checked").val();
+                answersarray[10]=$("input[class='rad10']:checked").val();
+                console.log(answersarray);
+                localStorage.setItem("jOrder", parseInt(j) + parseInt(1));
+                localStorage.setItem("timmer", parseInt(20));
+                clearInterval(timer);
+                timer = setInterval(myTimer, 1000);
+                xy++;
+                xx++;
+                console.log(xy);
+                if (xy == 9) {
+                    $("#tablecont").append("<table id='myTable'></table>");
+                    $("table").append("<tr>" + "<td>" + answersarray[0] + "</td>" + "</tr>");
+                    for (var m = 0; m <= 9; m++) {
+                        $("table").append("<tr></tr>");
+                        if (answersarray[m+1] == questionsArray[m+1]) {
+                        $("tr").append("<td>" + "Q" + m + "</td>");
+                        $("tr").append("<td>yasien</td>");
+                    } else {
+                        $("tr").append("<td>" + "Q" + m + "</td>");
+                        $("tr").append("<td>wrong</td>");
+                        $("tr").append("<td>correct is : yasien</td>");
+                    }
+                    }
+                    console.log(xy);
+                    $("td").addClass("tdcss");
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="row col-9 pl-5">
+        <div class="row col-12 pt-5 ">
+            <h1>Welcome to this exam , first of all enter your name.</h1>
+        </div>
+        <div class="row col-12 pt-5">
+            <input type="text" placeholder="Enter your name" id="name">
+        </div>
+        <div class="row col-12 pt-5">
+            <h4>Ten questions need to be answered. You have 25s for each questions.</h4>
+
+        </div>
+        <div class="row col-12 pt-3">
+            <h4>press next to continue.</h4>
+        </div>
+    </div>
+    <button class="btn btn-primary btnpos px-3 py-3" id="q">Next</button>
+    <div class="text-canter h3" id="stopWatch">20</div>
+    <div class="row col-8" id="q1">
+        <h2>Q1. What is the name of technical instructor? </h2><br>
+        <form action="">
+
+
+
+            <label class="pl-2 wrong"> <input class="rad1" type="radio" name="gender" value="1">Ahmad</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad1" type="radio" name="gender" value="1">Anas</label>
+
+
+            <label class="pl-2"><input class="rad1" type="radio" name="gender" value="2">Salameh</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad1" type="radio" name="gender" value="1">Mai</label>
+
+        </form>
+
+    </div>
+    <div class="row col-8" id="q2">
+        <h2>Q2. What is the name of technical instructor? </h2><br>
+        <form action="">
+
+
+
+            <label class="pl-2 wrong"> <input class="rad2" type="radio" name="gender1" value="1">Ahmad</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad2" type="radio" name="gender1" value="1">Anas</label>
+
+
+            <label class="pl-2"><input class="rad2" type="radio" name="gender1" value="2">Salameh</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad2" type="radio" name="gender1" value="1">Mai</label>
+
+        </form>
+    </div>
+    <div class="row col-8" id="q3">
+        <h2>Q3. What is the name of technical instructor? </h2><br>
+        <form action="">
+
+
+
+            <label class="pl-2 wrong"> <input class="rad3" type="radio" name="gender2" value="1">Ahmad</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad3" type="radio" name="gender2" value="1">Anas</label>
+
+
+            <label class="pl-2"><input class="rad3" type="radio" name="gender2" value="2">Salameh</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad3" type="radio" name="gender2" value="1">Mai</label>
+
+        </form>
+    </div>
+    <div class="row col-8" id="q4">
+        <h2>Q4. What is the name of technical instructor? </h2><br>
+        <form action="">
+
+
+
+            <label class="pl-2 wrong"> <input class="rad4" type="radio" name="gender3" value="1">Ahmad</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad4" type="radio" name="gender3" value="1">Anas</label>
+
+
+            <label class="pl-2"><input class="rad4" type="radio" name="gender3" value="2">Salameh</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad4" type="radio" name="gender3" value="1">Mai</label>
+
+        </form>
+    </div>
+    <div class="row col-8" id="q5">
+        <h2>Q5. What is the name of technical instructor? </h2><br>
+        <form action="">
+
+
+
+            <label class="pl-2 wrong"> <input class="rad5" type="radio" name="gender4" value="1">Ahmad</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad5" type="radio" name="gender4" value="1">Anas</label>
+
+
+            <label class="pl-2"><input class="rad5" type="radio" name="gender4" value="2">Salameh</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad5" type="radio" name="gender4" value="1">Mai</label>
+
+        </form>
+    </div>
+    <div class="row col-8" id="q6">
+        <h2>Q6. What is the name of technical instructor? </h2><br>
+        <form action="">
+
+
+
+            <label class="pl-2 wrong"> <input class="rad6" type="radio" name="gender5" value="1">Ahmad</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad6" type="radio" name="gender5" value="1">Anas</label>
+
+
+            <label class="pl-2"><input class="rad6" type="radio" name="gender5" value="2">Salameh</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad6" type="radio" name="gender5" value="1">Mai</label>
+
+        </form>
+    </div>
+    <div class="row col-8" id="q7">
+        <h2>Q7. What is the name of technical instructor? </h2><br>
+        <form action="">
+
+
+
+            <label class="pl-2 wrong"> <input class="rad7" type="radio" name="gender6" value="1">Ahmad</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad7" type="radio" name="gender6" value="1">Anas</label>
+
+
+            <label class="pl-2"><input class="rad7" type="radio" name="gender6" value="2">Salameh</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad7" type="radio" name="gender6" value="1">Mai</label>
+
+        </form>
+    </div>
+    <div class="row col-8" id="q8">
+        <h2>Q8. What is the name of technical instructor? </h2><br>
+        <form action="">
+
+
+
+            <label class="pl-2 wrong"> <input class="rad8" type="radio" name="gender7" value="1">Ahmad</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad8" type="radio" name="gender7" value="1">Anas</label>
+
+
+            <label class="pl-2"><input class="rad8" type="radio" name="gender7" value="2">Salameh</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad8" type="radio" name="gender7" value="1">Mai</label>
+
+        </form>
+    </div>
+    <div class="row col-8" id="q9">
+        <h2>Q9. What is the name of technical instructor? </h2><br>
+        <form action="">
+
+
+
+            <label class="pl-2 wrong"> <input class="rad9" type="radio" name="gender8" value="1">Ahmad</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad9" type="radio" name="gender8" value="1">Anas</label>
+
+
+            <label class="pl-2"><input class="rad9" type="radio" name="gender8" value="2">Salameh</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad9" type="radio" name="gender8" value="1">Mai</label>
+
+        </form>
+    </div>
+    <div class="row col-8" id="q10">
+        <h2>Q10. What is the name of technical instructor? </h2><br>
+        <form action="">
+
+
+
+            <label class="pl-2 wrong"> <input class="rad10" type="radio" name="gender9" value="1">Ahmad</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad10" type="radio" name="gender9" value="1">Anas</label>
+
+
+            <label class="pl-2"><input class="rad10" type="radio" name="gender9" value="2">Salameh</label>
+
+
+            <label class="pl-2 wrong"> <input class="rad10" type="radio" name="gender9" value="1">Mai</label>
+
+        </form>
+    </div>
+    <div id="tablecont">
+
+    </div>
+    <script>
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+.btnpos{
+    position: fixed !important;
+    bottom: 150px !important;
+    right: 250px !important;
+}
+.tdcss{
+    padding: 15px;
+    border: 2px solid black;
+}
